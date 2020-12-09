@@ -30,7 +30,7 @@ p
 
 
 ## ----03-make-a-plot-6, fig.cap='A scatterplot of Life Expectancy vs GDP', fig.width=8, fig.height=5----
-p + geom_point() 
+p + geom_point()
 
 
 ## ----03-make-a-plot-7, fig.cap='Life Expectancy vs GDP, using a smoother.', fig.width=8, fig.height=5----
@@ -47,7 +47,7 @@ p + geom_smooth()
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y=lifeExp))
-p + geom_point() + geom_smooth() 
+p + geom_point() + geom_smooth()
 
 
 
@@ -55,7 +55,7 @@ p + geom_point() + geom_smooth()
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y=lifeExp))
-p + geom_point() + geom_smooth(method = "lm") 
+p + geom_point() + geom_smooth(method = "lm")
 
 
 ## ----03-make-a-plot-10, fig.cap='Life Expectancy vs GDP scatterplot, with a GAM smoother and a log scale on the x-axis.', fig.width=8, fig.height=5----
@@ -102,7 +102,7 @@ p + geom_point(color = "purple") +
 
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
-                          y = lifeExp)) 
+                          y = lifeExp))
 p + geom_point(alpha = 0.3) +
     geom_smooth(color = "orange", se = FALSE, size = 8, method = "lm") +
     scale_x_log10()
@@ -156,7 +156,7 @@ p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y = lifeExp))
 p + geom_point(mapping = aes(color = log(pop))) +
-    scale_x_log10()    
+    scale_x_log10()
 
 
 ## ----knitopt, echo = TRUE, eval = FALSE-------------------------------
@@ -168,7 +168,7 @@ p + geom_point(mapping = aes(color = log(pop))) +
 
 
 ## ----03-make-a-plot-21------------------------------------------------
-here() 
+here()
 
 
 ## ----03-make-a-plot-22------------------------------------------------
