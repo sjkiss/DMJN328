@@ -1,4 +1,4 @@
-## ----setup, include=FALSE---------------------------------------------
+## ----setup, include=FALSE-----------------------------------------------------------------------------------------------------------
 knitr::opts_chunk$set(echo = TRUE)
 
 library(gapminder)
@@ -7,33 +7,33 @@ library(tidyverse)
 library(socviz)
 
 
-## ----03-make-a-plot-1-------------------------------------------------
+## ----03-make-a-plot-1---------------------------------------------------------------------------------------------------------------
 
 
 
-## ----03-make-a-plot-2-------------------------------------------------
+## ----03-make-a-plot-2---------------------------------------------------------------------------------------------------------------
 gapminder
 
 
-## ----03-make-a-plot-3-------------------------------------------------
+## ----03-make-a-plot-3---------------------------------------------------------------------------------------------------------------
 p <- ggplot(data = gapminder)
 
 
-## ----03-make-a-plot-4-------------------------------------------------
+## ----03-make-a-plot-4---------------------------------------------------------------------------------------------------------------
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y = lifeExp))
 
 
-## ----03-make-a-plot-5, fig.cap='This empty plot has no geoms.', fig.width=8, fig.height=5----
+## ----03-make-a-plot-5, fig.cap='This empty plot has no geoms.', fig.width=8, fig.height=5-------------------------------------------
 p
 
 
-## ----03-make-a-plot-6, fig.cap='A scatterplot of Life Expectancy vs GDP', fig.width=8, fig.height=5----
-p + geom_point()
+## ----03-make-a-plot-6, fig.cap='A scatterplot of Life Expectancy vs GDP', fig.width=8, fig.height=5---------------------------------
+p + geom_point() 
 
 
-## ----03-make-a-plot-7, fig.cap='Life Expectancy vs GDP, using a smoother.', fig.width=8, fig.height=5----
+## ----03-make-a-plot-7, fig.cap='Life Expectancy vs GDP, using a smoother.', fig.width=8, fig.height=5-------------------------------
 
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
@@ -42,20 +42,20 @@ p + geom_smooth()
 
 
 
-## ----03-make-a-plot-8, fig.cap='Life Expectancy vs GDP, showing both points and a GAM smoother.', fig.width=8, fig.height=5----
+## ----03-make-a-plot-8, fig.cap='Life Expectancy vs GDP, showing both points and a GAM smoother.', fig.width=8, fig.height=5---------
 
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y=lifeExp))
-p + geom_point() + geom_smooth()
+p + geom_point() + geom_smooth() 
 
 
 
-## ----03-make-a-plot-9, fig.cap='Life Expectancy vs GDP, points and an ill-advised linear fit.', fig.width=8, fig.height=5----
+## ----03-make-a-plot-9, fig.cap='Life Expectancy vs GDP, points and an ill-advised linear fit.', fig.width=8, fig.height=5-----------
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y=lifeExp))
-p + geom_point() + geom_smooth(method = "lm")
+p + geom_point() + geom_smooth(method = "lm") 
 
 
 ## ----03-make-a-plot-10, fig.cap='Life Expectancy vs GDP scatterplot, with a GAM smoother and a log scale on the x-axis.', fig.width=8, fig.height=5----
@@ -77,7 +77,7 @@ p + geom_point() +
     scale_x_log10(labels = scales::dollar)
 
 
-## ----03-make-a-plot-12, fig.cap='What has gone wrong here?', fig.width=8, fig.height=5----
+## ----03-make-a-plot-12, fig.cap='What has gone wrong here?', fig.width=8, fig.height=5----------------------------------------------
 
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
@@ -88,7 +88,7 @@ p + geom_point() +
     scale_x_log10()
 
 
-## ----03-make-a-plot-13, fig.cap='Setting the color attribute of the points directly.', fig.width=8, fig.height=5----
+## ----03-make-a-plot-13, fig.cap='Setting the color attribute of the points directly.', fig.width=8, fig.height=5--------------------
 
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
@@ -98,11 +98,11 @@ p + geom_point(color = "purple") +
     scale_x_log10()
 
 
-## ----03-make-a-plot-14, fig.cap='Setting some other arguments.', fig.width=8, fig.height=5, fig.margin=TRUE----
+## ----03-make-a-plot-14, fig.cap='Setting some other arguments.', fig.width=8, fig.height=5, fig.margin=TRUE-------------------------
 
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
-                          y = lifeExp))
+                          y = lifeExp)) 
 p + geom_point(alpha = 0.3) +
     geom_smooth(color = "orange", se = FALSE, size = 8, method = "lm") +
     scale_x_log10()
@@ -119,7 +119,7 @@ p + geom_point(alpha = 0.3) + geom_smooth(method = "gam") +
          caption = "Source: Gapminder.")
 
 
-## ----03-make-a-plot-16, fig.cap='Mapping the continent variable to the color aesthetic.', fig.width=8.5, fig.height=5----
+## ----03-make-a-plot-16, fig.cap='Mapping the continent variable to the color aesthetic.', fig.width=8.5, fig.height=5---------------
 
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
@@ -150,28 +150,28 @@ p + geom_point(mapping = aes(color = continent)) +
     scale_x_log10()
 
 
-## ----03-make-a-plot-19, fig.cap='Mapping a continuous variable to color.', out.width="100%", fig.width=8.5, fig.height=5----
+## ----03-make-a-plot-19, fig.cap='Mapping a continuous variable to color.', out.width="100%", fig.width=8.5, fig.height=5------------
 
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y = lifeExp))
 p + geom_point(mapping = aes(color = log(pop))) +
-    scale_x_log10()
+    scale_x_log10()    
 
 
-## ----knitopt, echo = TRUE, eval = FALSE-------------------------------
+## ----knitopt, echo = TRUE, eval = FALSE---------------------------------------------------------------------------------------------
 ## knitr::opts_chunk$set(fig.width=8, fig.height=5)
 
 
-## ----03-make-a-plot-20, echo=TRUE, eval=FALSE-------------------------
+## ----03-make-a-plot-20, echo=TRUE, eval=FALSE---------------------------------------------------------------------------------------
 ## ggsave(filename = "figures/my_figure.png")
 
 
-## ----03-make-a-plot-21------------------------------------------------
-here()
+## ----03-make-a-plot-21--------------------------------------------------------------------------------------------------------------
+here() 
 
 
-## ----03-make-a-plot-22------------------------------------------------
+## ----03-make-a-plot-22--------------------------------------------------------------------------------------------------------------
 
 p_out <- p + geom_point(mapping = aes(color = log(pop))) +
     scale_x_log10()
