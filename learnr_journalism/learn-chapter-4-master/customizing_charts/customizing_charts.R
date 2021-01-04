@@ -14,11 +14,11 @@ ggplot(ages,
 
 library(forcats)
 ggplot(ages,
-       aes(x=actress_age, y=fct_reorder(Movie, actress_age, desc=TRUE))) +
+       aes(x=actress_age, y=fct_reorder(Movie, actress_age, .desc=T))) +
   geom_point()
 
 ggplot(ages,
-  aes(x=actress_age, y=fct_reorder(Movie, actress_age, desc=TRUE))) +
+  aes(x=actress_age, y=fct_reorder(Movie, actress_age, .desc=TRUE))) +
   geom_segment(
   aes(x = 0,
   xend = actress_age,

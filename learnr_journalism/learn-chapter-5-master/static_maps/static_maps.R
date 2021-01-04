@@ -7,6 +7,7 @@ library(ggplot2)
 library(sf)
 
 # If you're using a Mac, uncomment and run the lines below
+# Note from Simon: I'm not sure if we need to do this.
 #options(device = "X11") 
 #X11.options(type = "cairo")
 
@@ -67,6 +68,8 @@ ggplot(tx) +
   theme(panel.grid.major = element_line(colour = 'transparent')) +
   labs(title="Texas counties")
 
+## NOTE FROM SIMON
+#we won't be working through this code. 
 
 ## Downloading Census data into R via API
 
