@@ -1,7 +1,7 @@
 ---
 title: "Draw Maps"
 author: "Kieran Healy"
-date: "01-December-2018"
+date: "10-January-2020"
 output: html_document
 ---
 
@@ -49,6 +49,18 @@ p3 <- p2 + scale_x_continuous(breaks = c(-30, -20, -10, 0, 10, 20, 30, 40),
 
 p3 + facet_wrap(~ census, ncol=1, scales="free_y") +
     guides(color=FALSE) + labs(x = "Point Margin", y = "") +
+    theme(axis.text=element_text(size=8))
+
+```
+
+```{r 07-ggforce, eval = FALSE}
+
+## Use ggforce to resize the facets proportional to the 
+## number of states in each region.
+library(ggforce)
+
+p3 + facet_col(~ census, scales="free_y", space = "free") +
+    guides(color=FALSE) + labs(x = "Point Margin", y = NULL) +
     theme(axis.text=element_text(size=8))
 
 ```
@@ -305,6 +317,8 @@ pop_p2 + labs(title = "Reverse-coded Population Density",
 ## Statebins
 
 ```{r 07-maps-14, fig.cap='Statebins of the election results. We omit DC from the Clinton map to prevent the scale becoming unbalanced.', warning = FALSE, out.width = "100%", fig.show = "hold", fig.margin = TRUE, fig.width = 5, fig.height = 4, tidy = FALSE}
+#You may need to uncomment this and install it.
+#install.packages("statebins")
 library(statebins)
 
 statebins_continuous(state_data = election, state_col = "state",

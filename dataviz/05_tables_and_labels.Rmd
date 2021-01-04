@@ -1,7 +1,7 @@
 ---
 title: "Tables, Labels, Notes"
 author: "Kieran Healy"
-date: "01-December-2018"
+date: "10-January-2020"
 output: html_document
 ---
 
@@ -53,7 +53,7 @@ p + geom_col(position = "dodge2") +
 
 ```{r facet_dodge}
 p <- ggplot(rel_by_region, aes(x = religion, y = pct, fill = religion))
-p + geom_col(position = "dodge2") +
+p + geom_col(position = "dodge") +
     labs(x = NULL, y = "Percent", fill = "Religion") +
     guides(fill = FALSE) + 
     coord_flip() + 
@@ -75,7 +75,8 @@ p + geom_point()
 ```{r grouped_and_faceted}
 p <- ggplot(data = organdata,
             mapping = aes(x = year, y = donors))
-p + geom_line(aes(group = country)) + facet_wrap(~ country)      
+p + geom_line(aes(group = country)) + 
+  facet_wrap(~ country)      
 ```
 
 ```{r 05-tables-and-labels-5 }
@@ -151,8 +152,11 @@ by_country
 
 
 ```{r better_summarize}
-by_country <- organdata %>% group_by(consent_law, country) %>%
-    summarize_if(is.numeric, funs(mean, sd), na.rm = TRUE) %>%
+by_country <- organdata %>% 
+  group_by(consent_law, country) %>%
+    summarize_if(is.numeric, 
+                 list(~ mean(., na.rm = TRUE), 
+                      ~ sd(., na.rm = TRUE))) %>%
     ungroup()
 
 by_country
@@ -160,7 +164,8 @@ by_country
 
 ```{r 05-tables-and-labels-12 }
 p <- ggplot(data = by_country,
-            mapping = aes(x = donors_mean, y = reorder(country, donors_mean),
+            mapping = aes(x = donors_mean, 
+                          y = reorder(country, donors_mean),
                           color = consent_law))
 p + geom_point(size=3) +
     labs(x = "Donor Procurement Rate",

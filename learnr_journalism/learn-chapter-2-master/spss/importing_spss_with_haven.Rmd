@@ -1,0 +1,105 @@
+---
+title: "Importing and Searching SPSS Files"
+author: "Simon J. Kiss"
+date: "28/12/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(here)
+library(knitr)
+options(max.print=100)
+
+```
+
+SPSS is a widely used bit of statistical software that is a little bit like Microsoft Excel; it is heavily dependent on a Graphical User Interface (GUI). Because it's so widely used, a lot of data files are made available in SPSS format. It offers one useful feature which is *labelled* data. This document explores what labelled data look like and how to use them. 
+
+The best way to import SPSS files into R is with the `haven` and `labelled` packages.
+
+```{r load-libraries}
+#install.packages('haven')
+#install.packages("labelled")
+library(haven)
+library(labelled)
+```
+
+The file we're going to play with is in the subfolder `spss/data` in the Chapter 2 folder.
+
+
+Variable labels and value labels
+```{r check-working-directory, results="hide"}
+getwd()
+```
+
+And if you look in the `spss/data` subfolder you should see this:
+
+```{r file-image, echo=F}
+
+include_graphics(here("spss/images/files.png"))
+```
+
+If you open up the `CES2019` folder you should see an SPSS file and a pdf file. The PDF file is the technical workbook for the 2019 Canada Election Study and it includes a lot of useful things you might need to know, including all the texts of the survey questions that were asked. However it can be unwieldy to read through an entire pdf that is a separate file like that. The `haven` package provides some functionality that helps sort through this. 
+
+The `.sav` file is the SPSS data file for the 2019 file. To read an SPSS data file in you use the `read_sav()` command with the file path. 
+
+```{r, read-in-data}
+ces<-read_sav("spss/data/ces2019/ces2019.sav")
+
+```
+
+If we just take the the variable`q3`, and look at it:
+
+```{r, q3}
+ces$q3
+```
+
+You can see that it is a 1s and 2s. But we don't know what those refer to.  Labelled data have two sets of attributes: a variable label and a value label. The variable label can be anything, but it often is a description of what the variable is trying to measure.  
+
+If we check the variable label of q3 we find this:
+
+```{r variable-labels}
+var_label(ces$q3)
+```
+
+OK, so, `q3` is the respondent's gender. But what does 1 and 2 refer to? Presumably one is male and another is female, but which is which? 
+
+This type of information is stored in the value label. 
+
+```{r value-labels}
+val_labels(ces$q3)
+```
+
+Now we know that a 1 is male, and a 2 is female. 
+
+So, later we will be able to recode this into something useful turning the 1 into `Male` and 2 into `female`. There are numerous ways to do this. 
+
+The other thing that is extremely  useful is the `look_for` function in the `labelled` package. It searches for keywords through all the variables in the data set so that you can get a sense of what variables you have. 
+
+
+```{r look-for}
+
+look_for(ces, "vote")
+look_for(ces, "education")
+look_for(ces, "environment")
+
+```
+
+You can make searching a little more specific. Adding the `^` to the string means to find matches that *start* with that string. Adding `?` to the end means finding strings that *end* with that string.  Adding a `.` means match any character; it's like a wild-card. For advanced users, this uses `regular expressions`
+
+```{r regex}
+look_for(ces, "age")
+look_for(ces, "^age")
+look_for(ces, "age?")
+look_for(ces, ".age?")
+```
+
+
+
+Now you try searching for different keywords!
+
+
+```{r echo=T, eval=F}
+look_for(ces, "")
+```
+

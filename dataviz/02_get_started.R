@@ -114,16 +114,22 @@ str(my_summary)
 
 
 ## ----02-get-started-12, echo = TRUE, eval = FALSE-----------------------------------------------------------------------------------
-## 
+##
 ## url <- "https://cdn.rawgit.com/kjhealy/viz-organdata/master/organdonation.csv"
-## 
+##
 ## organs <- read_csv(file = url)
 
 
 ## ----02-get-started-13--------------------------------------------------------------------------------------------------------------
 
+
+
 organs <- read_csv(file = "data/organdonation.csv")
 
+## Note: If you get an error here:
+# 1. check your working directory
+# 2. set your working directory to be in the dataviz folder
+# 3. Or open the dataviz RStudio Project
 
 organs
 
@@ -136,8 +142,8 @@ gapminder
 
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap, y = lifeExp))
-p + geom_point() + 
-  geom_smooth(mapping = aes(color = continent, fill = continent)) + 
+p + geom_point() +
+  geom_smooth(mapping = aes(color = continent, fill = continent)) +
   scale_x_log10(labels = scales::dollar)
 
 

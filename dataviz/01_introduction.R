@@ -17,14 +17,15 @@ library(socviz)
 ## ## in the line above. You only need to do this once. Alternatively,
 ## ## copy the code below and paste it into the Console window.
 ## 
-## my_packages <- c("tidyverse", "broom", "coefplot", "cowplot", "drat",
-##                  "gapminder", "GGally", "ggrepel", "ggridges", "gridExtra",
-##                  "here", "interplot", "margins", "maps", "mapproj",
-##                  "mapdata", "MASS", "quantreg", "rlang", "scales", "socviz",
-##                  "survey", "srvyr", "viridis", "viridisLite", "devtools")
-## 
-## install.packages(my_packages, repos = "http://cran.rstudio.com")
-## 
+
+# my_packages <- c("tidyverse", "broom", "coefplot", "cowplot", "drat",
+#                  "gapminder", "GGally", "ggrepel", "ggridges", "gridExtra",
+#                  "here", "interplot", "margins", "maps", "mapproj",
+#                  "mapdata", "MASS", "quantreg", "rlang", "scales", "socviz",
+#                  "survey", "srvyr", "viridis", "viridisLite", "devtools")
+#
+# install.packages(my_packages, repos = "http://cran.rstudio.com")
+#
 
 
 ## ----look---------------------------------------------------------------------------------------------------------------------------

@@ -5,6 +5,8 @@ setwd("~/projects/learn-r-journalism")
 # On a pc, it might look like this
 setwd("C:/Documents/learn-r-journalism")
 
+# The better way to track your working directory is to always be sure you open the correct RStudio Project
+
 10^2 + 26
 
 a <- 4
